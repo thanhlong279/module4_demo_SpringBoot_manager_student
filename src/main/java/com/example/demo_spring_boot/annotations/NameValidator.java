@@ -1,4 +1,4 @@
-package annotations;
+package com.example.demo_spring_boot.annotations;
 
 import com.example.demo_spring_boot.repositories.IStudentRepository;
 import jakarta.validation.ConstraintValidator;

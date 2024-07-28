@@ -27,6 +27,7 @@
             <th>Điểm</th>
             <th>Học lực</th>
             <th>Lớp</th>
+            <th>Thêm vào room</th>
             <th>Chức năng</th>
         </tr>
         </thead>
@@ -46,6 +47,9 @@
 
             </td>
             <td th:text="${student.classroom.name}"></td>
+            <td><button class="btn-btn-danger"
+                        th:onclick="'window.location.href = \'' + @{/student/talk/{id}(id=${student.id})} + '\''">Thêm
+            </button></td>
             <td>
                 <button class="btn btn-warning"
                         th:onclick="'window.location.href = \'' + @{/student/update/{id}(id=${student.id})} + '\''">Sửa

@@ -9,10 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
-public class StudentService implements IStudentService {
+public class  StudentService implements IStudentService {
 
     @Autowired
     private IStudentRepository studentRepository;
@@ -34,7 +34,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public Student findById(Long id) {
-        return studentRepository.findStudentByIdIs(id);
+        return studentRepository.findById(id).orElse(null);
     }
 
     public void update(Student student) {
@@ -43,6 +43,11 @@ public class StudentService implements IStudentService {
         } else {
             throw new IllegalArgumentException("Student not found");
         }
+    }
+
+    @Override
+    public void deleteStudent(Student student1) {
+        studentRepository.delete(student1);
     }
 
 }

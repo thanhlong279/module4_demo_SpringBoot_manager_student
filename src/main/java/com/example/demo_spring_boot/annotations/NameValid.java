@@ -1,4 +1,4 @@
-package annotations;
+package com.example.demo_spring_boot.annotations;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

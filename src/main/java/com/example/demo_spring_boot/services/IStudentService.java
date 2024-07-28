@@ -18,4 +18,6 @@ public interface IStudentService {
     Student findById(Long id);
 
     void update(Student student);
+
+    void deleteStudent(Student student1);
 }

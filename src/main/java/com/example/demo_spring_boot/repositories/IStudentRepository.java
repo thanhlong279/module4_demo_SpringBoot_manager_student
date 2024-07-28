@@ -17,6 +17,6 @@ public interface IStudentRepository extends JpaRepository<Student, Long> {
 ////    @Modifying
     Page<Student> findAllByNameContaining(@Param("name") String name, Pageable pageable);
 
-    Student findStudentByIdIs(Long id);
+//    Student findStudentByIdIs(Long id);
 
 }

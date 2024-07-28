@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,7 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 //Bài tập về nhà: phân biệt @Component, @Controller, @Service, @Repository (đều sử dụng để tạo bean)
 @Controller
 @RequestMapping(value = "student")
+@SessionAttributes("studentTalkList")
 public class StudentController {
 
 //    Cơ chế DI (Dependence injection): Tiêm phụ thuộc để giảm sự phụ thuộc
@@ -40,6 +42,11 @@ public class StudentController {
 
     @Autowired
     private IClassroomService classroomService;
+
+    @ModelAttribute("studentTalkList")
+    private List<Student> students(){
+        return new ArrayList<>();
+    }
 
     @GetMapping("/hello")
     public String hello() {
@@ -120,6 +127,21 @@ public class StudentController {
 //        model.addAttribute("nameStudent", nameStudent);
 //        return "student/list";
 //    }
+    @GetMapping("talk/{id}")
+    public String addTalk(@PathVariable("id") Long id,
+                          @ModelAttribute("studentTalkList")List<Student> students,
+                          RedirectAttributes redirect) {
+        Student student = studentService.findById(id);
+        students.add(student);
+        redirect.addFlashAttribute("message", "thêm vào room thành công");
+        return "redirect:/student";
+    }
 
+    @GetMapping("/talk")
+    public String viewTalkList(@ModelAttribute("studentTalkList")List<Student> students,
+                               Model model){
+        model.addAttribute("students", students);
+        return "student/list_talk";
+    }
 
 }
